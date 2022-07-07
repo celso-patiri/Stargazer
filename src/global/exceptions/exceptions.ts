@@ -1,6 +1,6 @@
 type Response = string | any;
 
-class HttpException {
+export class HttpException {
   status: number;
   response: Response;
 
@@ -11,7 +11,13 @@ class HttpException {
 }
 
 export class UnprocessableEntityException extends HttpException {
-  constructor(response: Response) {
-    super(422, response);
+  constructor(response?: Response) {
+    super(422, response || "Unprocessable Entity");
+  }
+}
+
+export class NotFoundException extends HttpException {
+  constructor(response?: Response) {
+    super(404, response || "Not Found");
   }
 }
